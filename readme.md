@@ -14,8 +14,8 @@ This library is designed to render the code string of map objects, which could b
 The main reason I'm doing this is to create map dynamically, in web2py, a python-web-framework, which is a similar framework as flask and django. 
 
 todo list:
-1. symbology.classification: colors partition by sequential or qualitative 
-2. symbology.transformation: width weighting by sequential or qualitative 
-3. sourcehandle.projection: reprojecting data from a projection to b projection
-4. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)
-5. renderer.leaflet: render maps to leaflet
+1. symbology.classification: colors partition by sequential or qualitative  
+2. symbology.transformation: width weighting by sequential or qualitative  
+3. sourcehandle.projection: reprojecting data from a projection to b projection  
+4. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)  
+5. renderer.leaflet: render maps to leaflet  
