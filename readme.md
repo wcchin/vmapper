@@ -19,7 +19,7 @@ everything is still **writing**
 
 todo list:  
 ----------
-1.** symbology.classification**: colors partition by sequential or qualitative  
+1. **symbology.classification**: colors partition by sequential or qualitative  
 2. **symbology.transformation**: width weighting by sequential or qualitative  
 3. **sourcehandle.projection**: reprojecting data from a projection to b projection  
 4. **sourcehandle.frompostgis**: from postgis (or from sqlalchemy/geoalchemy)  
