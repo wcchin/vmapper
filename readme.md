@@ -19,7 +19,7 @@ todo list:
 3. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)
 4. renderer.leaflet: render maps to leaflet
 
-updated:
+updated:  
 2016-Jan-11: wrote symbology.transformation: hover effect  
 2016-Jan-11: wrote symbology.classification: colors partition by qualitative  
 2016-Jan-11: wrote the coloring parts (seems not stable)  
