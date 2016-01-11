@@ -30,7 +30,7 @@ updated:
 2016-Jan-11: wrote symbology.transformation: hover effect  
 2016-Jan-11: wrote symbology.classification: colors partition by qualitative  
 2016-Jan-11: wrote the coloring parts (seems not stable)  
-2016-Jan-11: added background color style
+2016-Jan-11: added background color style  
 2016-Jan-11: fix multipolygon's hole problem (e.g. former Taichung city)  
 2016-Jan-11: wrote label by column (with column name)  
 2016-Jan-11: added svgpan.js (get from svgpan.js project in google project)  
