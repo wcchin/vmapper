@@ -1,6 +1,7 @@
 import datahandle.datasources as datasources
 import renderer.svg as svg
 import symbology.classification as classification
+import time
 
 
 class Paper():
@@ -8,23 +9,20 @@ class Paper():
         backgroundcolor="#b3c0ef", prettyprint=True):
         self.scene = svg.Scene(name=title, title=title, width=width, height=height, 
             backgroundcolor=backgroundcolor,  prettyprint=prettyprint)
-        self.filename = None
-        if filename!=None:
-            self.scene.setfilename(filename)
-            self.filename = filename
+        self.filename = filename
         
     def getsvgString(self):
         svgstring = self.scene.getsvg()
         return svgstring #" ".join(scene.strarray())
 
     def drawToFile(self, filename=None):
-        if filename!=None:
-            self.scene.setfilename(filename)
-            self.filename = filename
-        else:
-            if 
-            self.filename=title+('.html')
-        self.scene.write_svg(self.filename)
+        ff = self.filename
+        if filename is not None:
+            ff = filename
+        if ff is None:
+            tt = [str(i).zfill(2) for i in list(time.localtime())]
+            ff = "map_"+"".join(tt)+".svg"
+        self.scene.write_svg(ff)
 
     def addPolygon(self, sequence=0, source=None, layername=None, colorby=None, labelby=None, 
         dcolor=(255,255,255), dopacity=1.0, dscolor=(0,0,0), dswidth=200,

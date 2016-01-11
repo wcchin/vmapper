@@ -1,4 +1,4 @@
-import fromShpfile
+import datahandle.fromShpfile as fromShpfile
 #import fromDXF
 
 class Src():

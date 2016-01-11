@@ -1,5 +1,5 @@
-mappy
-=====
+vmapper
+=======
 
 This is a simple python library for creating map in python, from reading spatial data source to exporting map.
 Currently, only shapefile is implemented, and could only render maps to svg. 
@@ -13,11 +13,11 @@ I also plan to write a renderer to export the maps into leaflet, maybe using fol
 This library is designed to render the code string of map objects, which could be used with browser. 
 The main reason I'm doing this is to create map dynamically, in web2py, a python-web-framework, which is a similar framework as flask and django. 
 
-todo list:
-1. symbology.classification: colors partition by sequential (numeric cuts)
-2. sourcehandle.projection: reprojecting data from a projection to b projection
-3. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)
-4. renderer.leaflet: render maps to leaflet
+todo list:  
+1. symbology.classification: colors partition by sequential (numeric cuts)  
+2. sourcehandle.projection: reprojecting data from a projection to b projection  
+3. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)  
+4. renderer.leaflet: render maps to leaflet  
 
 updated:  
 2016-Jan-11: wrote symbology.transformation: hover effect  

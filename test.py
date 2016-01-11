@@ -1,7 +1,7 @@
-import mappy
+import vmapper
 
 def test():
-    paper = mappy.Paper(filename='testingPaper06.svg')
+    paper = vmapper.Paper()
     colorby1 = {'column':"party", 'paletname':"colorbrewer", 
     'class_type':"qualitative", 'class_number':"3",'color_map':"Accent"}
     paper.addPolygon(sequence=1, source='shpfile:test_data/taiwan_county_party.shp',

@@ -46,9 +46,6 @@ class Scene:
         self.init_style()
         return
     
-    def setfilename(self, filename):
-        self.name = filename
-
     def updatebbox(self, newbbox):
         if np.isnan(self.bbox[0]):
             self.bbox = newbbox
@@ -150,11 +147,9 @@ class Scene:
         return var
 
     def write_svg(self,filename=None):
-        if filename:
-            self.svgname = filename
-        else:
-            self.svgname = self.name + ".html"
-        file = open(self.svgname,'w')
+        if filename is None:
+            filename="map_01.svg"
+        file = open(filename,'w')
         file.writelines(self.getsvg())
         file.close()
         return
