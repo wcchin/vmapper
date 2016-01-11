@@ -15,7 +15,7 @@ The main reason I'm doing this is to create map dynamically, in web2py, a python
 
 For example in test.py:  
 result:  
-![testing map]<img src="https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg">
+<img src="https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg">
 
 demo:  
 (svg in browser with interactivity)[https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg]
