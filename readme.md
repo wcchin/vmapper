@@ -18,7 +18,7 @@ result:
 <img src="https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg">
 
 demo:  
-(svg in browser with interactivity)[https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg]
+[svg in browser with interactivity](https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg)
 
 todo list:  
 1. symbology.classification: colors partition by sequential (numeric cuts)  
