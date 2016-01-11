@@ -13,6 +13,8 @@ I also plan to write a renderer to export the maps into leaflet, maybe using fol
 This library is designed to render the code string of map objects, which could be used with browser. 
 The main reason I'm doing this is to create map dynamically, in web2py, a python-web-framework, which is a similar framework as flask and django. 
 
+![testing map](https://rawgit.com/wcchin/vmapper/master/testingPaper06.svg)
+
 todo list:  
 1. symbology.classification: colors partition by sequential (numeric cuts)  
 2. sourcehandle.projection: reprojecting data from a projection to b projection  
