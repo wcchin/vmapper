@@ -25,10 +25,14 @@ class Layer:
         self.items.append(item)
       
 class Scene:
-    def __init__(self,name="svg",title="testing", height=400,width=400, bbox=[np.nan, np.nan, np.nan, np.nan], color=(255,255,255), opacity=0.8, strokecolor=(0,0,0), strokewidth=0.2, backgroundcolor="#b3c0ef", prettyprint=True):
+    def __init__(self,name="svg",title="", height=400,width=400, 
+        bbox=[np.nan, np.nan, np.nan, np.nan], color=(255,255,255), 
+        opacity=0.8, strokecolor=(0,0,0), strokewidth=0.2, 
+        backgroundcolor="#b3c0ef", prettyprint=True):
         self.name = name
         self.title = title
         self.items = []
+        self.styleitems = []
         self.layers={}
         self.height = height
         self.width = width
@@ -39,6 +43,7 @@ class Scene:
         self.strokewidth = strokewidth
         self.backgroundcolor = colorstr(backgroundcolor)
         self.prettyprint = prettyprint
+        self.init_style()
         return
     
     def setfilename(self, filename):
@@ -79,12 +84,39 @@ class Scene:
     # artifact
     def add(self,item): self.items.append(item)
 
-    def add_style(self):
+    def init_style(self):
+        self.styleitems.append('<style type="text/css" media="screen">\n')
+        self.styleitems.append("svg {background: %s;}\n"%(self.backgroundcolor))
+        self.styleitems.append('<![CDATA[\n')
+        #self.styleitems.append("polyline:hover{opacity: 0.8; stroke-width:200;}\n")
+        #self.styleitems.append("polygon:hover{opacity: 0.8; stroke-width:200;}\n")
+        self.styleitems.append("]]>\n</style>\n")
+        """
         styles = "<style>\n"
         styles = styles + "svg {background: %s;}\n"%(self.backgroundcolor)
-        styles = styles + "polyline:hover{opacity: 0.5; stroke-width:100;}\n"
-        styles = styles + "polygon:hover{opacity: 0.5; stroke-width:100;}\n"
+        styles = styles + "polyline:hover{opacity: 0.8; stroke-width:200;}\n"
+        styles = styles + "polygon:hover{opacity: 0.8; stroke-width:200;}\n"
         styles = styles + "</style>\n"
+        #return styles
+        """
+
+    def updatestyle(self, classkey="", featuretype="",hovercolor=None,hoveropacity=None,hoverstroke=None,hoverswidth=None):
+        
+        self.styleitems.insert(len(self.styleitems)-1, '.%s :hover {\n'%(classkey))
+        if hovercolor is not None:
+            self.styleitems.insert(len(self.styleitems)-1, 'fill: %s;\n'%(colorstr(hovercolor)))
+        if hoveropacity is not None:
+            self.styleitems.insert(len(self.styleitems)-1, 'opacity: %s;\n'%(hoveropacity))
+        if hoverstroke is not None:
+            #print hoverstroke
+            self.styleitems.insert(len(self.styleitems)-1, 'stroke:%s;\n'%(colorstr(hoverstroke)))
+        if hoverswidth is not None:
+            self.styleitems.insert(len(self.styleitems)-1, 'stroke-width:%s;'%(hoverswidth))
+        self.styleitems.insert(len(self.styleitems)-1, '}\n')
+
+    def get_styles(self):
+        styles = ""
+        for item in self.styleitems: styles += item
         return styles
 
     def map_elements(self,xmin,ymin,boxheight,boxwidth):
@@ -101,7 +133,7 @@ class Scene:
         xmin,ymin,xmax,ymax  = self.bbox
         boxwidth = xmax-xmin
         boxheight = ymax-ymin
-        styles = self.add_style()
+        styles = self.get_styles()
         map_elements = self.map_elements(xmin,ymin,boxheight,boxwidth)
         var = ["<?xml version=\"1.0\"?>\n",
                "<svg version=\"1.2\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink= \"http://www.w3.org/1999/xlink\" xmlns:ev=\"http://www.w3.org/2001/xml-events\"  baseProfile=\"tiny\" \n", 
@@ -139,7 +171,8 @@ class Scene:
             return strings.replace("  "," ").replace("\n", " ")
         
 class initLayer:
-    def __init__(self, key='layername', title='Layer label', dcolor=None, dopacity=0.8, dscolor=(0,0,0), dswidth=0.6, dsarray=None):
+    def __init__(self, key='layername', title='Layer label', dcolor=None, 
+        dopacity=0.8, dscolor=(0,0,0), dswidth=0.6, dsarray=None):
         self.key = key
         if dcolor != None:
             self.dcolor = colorstr(dcolor)
@@ -153,7 +186,7 @@ class initLayer:
         return
 
     def strarray(self):
-        string = '<g id="%s" style=\"fill: %s; fill-opacity:%s; stroke:%s; stroke-width:%s;' % (self.key, self.dcolor, self.dopacity, self.dscolor, self.dswidth)
+        string = '<g class="%s" style=\"fill: %s; fill-opacity:%s; stroke:%s; stroke-width:%s;' % (self.key, self.dcolor, self.dopacity, self.dscolor, self.dswidth)
         if self.dsarray != None:
             string = string + 'stroke-dasharray: %s; ' % (self.dsarray)
         string = string + '\">\n'
@@ -196,17 +229,27 @@ class MultiPolygons:
         return
 
     def strarray(self):
-        string = '<g id="%s" style=" ' %(self.key)
+        string = '<g fill-rule="evenodd" id="%s" style=" ' %(self.label)
         if self.color != None:
             string = string + 'fill: %s; ' % (self.color)
         if self.opacity != None:
             string = string + 'fill-opacity: %s; ' % (self.opacity)
         string = string + '">'+'<title>'+self.label+'</title>'
+        """
         for polygon in self.multiPolygons:
             string=string+'<polygon points="'
             for point in polygon:
                 string = string + str(point[0])+ ","+str(point[1]) + "  "
             string = string+'" />' 
+        string = string+'</g>\n' 
+        """
+        string=string+'<path d="'
+        for polygon in self.multiPolygons:
+            string=string+'M '
+            for point in polygon:
+                string = string + str(point[0])+ ","+str(point[1]) + " L "
+            string = string[:-2]+'Z ' 
+        string = string+'" />' 
         string = string+'</g>\n' 
         #print string
         return [string]

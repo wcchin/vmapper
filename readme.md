@@ -13,14 +13,17 @@ I also plan to write a renderer to export the maps into leaflet, maybe using fol
 This library is designed to render the code string of map objects, which could be used with browser. 
 The main reason I'm doing this is to create map dynamically, in web2py, a python-web-framework, which is a similar framework as flask and django. 
 
-current status
-----------
-everything is still **writing**
+todo list:
+1. symbology.classification: colors partition by sequential (numeric cuts)
+2. sourcehandle.projection: reprojecting data from a projection to b projection
+3. sourcehandle.frompostgis: from postgis (or from sqlalchemy/geoalchemy)
+4. renderer.leaflet: render maps to leaflet
 
-todo list:  
-----------
-1. **symbology.classification**: colors partition by sequential or qualitative  
-2. **symbology.transformation**: width weighting by sequential or qualitative  
-3. **sourcehandle.projection**: reprojecting data from a projection to b projection  
-4. **sourcehandle.frompostgis**: from postgis (or from sqlalchemy/geoalchemy)  
-5. **renderer.leaflet**: render maps to leaflet  
+updated:
+2016-Jan-11: wrote symbology.transformation: hover effect  
+2016-Jan-11: wrote symbology.classification: colors partition by qualitative  
+2016-Jan-11: wrote the coloring parts (seems not stable)  
+2016-Jan-11: added background color style
+2016-Jan-11: fix multipolygon's hole problem (e.g. former Taichung city)  
+2016-Jan-11: wrote label by column (with column name)  
+2016-Jan-11: added svgpan.js (get from svgpan.js project in google project)  

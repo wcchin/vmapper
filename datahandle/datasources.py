@@ -2,13 +2,16 @@ import fromShpfile
 #import fromDXF
 
 class Src():
-    def __init__(self, source):
+    def __init__(self, source, labelby):
         self.source = source
+        self.labelby = labelby
         self.bbox = [0,0,0,0]
         self.fields = []
         self.recs_dict = {}
         self.shapes_dict = {}
         self.layername = ""
+        self.labels = {}
+        
         self.checksource()
 
     def checksource(self):
@@ -39,5 +42,16 @@ class Src():
         self.shapes_dict = shp.shapedict
         self.layername = filename
 
+        if self.labelby is not None:
+            #print self.fields
+            ind = self.fields.index(self.labelby)
+            colrec = {}
+            for key, val in self.recs_dict.iteritems():
+                #print key
+                cval = val[ind]
+                #print cval
+                colrec[key] = cval
+            self.labels = colrec
+            #print len(self.labels)
     def getfromDXF(self):
         pass
