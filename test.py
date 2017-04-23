@@ -1,17 +1,25 @@
+# -*- coding: utf-8 -*-
+
 import vmapper
 
-def test():
-    paper = vmapper.Paper()
-    colorby1 = {'column':"party", 'paletname':"colorbrewer", 
-    'class_type':"qualitative", 'class_number':"3",'color_map':"Accent"}
-    paper.addPolygon(sequence=1, source='shpfile:test_data/taiwan_county_party.shp',
-        dcolor=(250,255,25),dopacity=1.0,hoveropacity=0.8,hoverswidth="500pt", 
-        colorby=colorby1, labelby="CNAME"
-        )#hovercolor=(0,255,0),
-    #paper.addPolyline(sequence=2,source='shpfile:../GIS/jingjian3/data/merge_04d.shp')
-    #paper.addPolyline(sequence=2,source='shpfile:TW_road_M2.shp')
-    paper.drawToFile()
-    #print paper.getsvgString()
+def test_pd():
+    import pandas as pd
+    pass
+
+def test_gpd():
+    ## a test with point, polylines, and polygons shapefile
+    import geopandas as gpd
+    gdf1 = gpd.read_file('testdata/county.shp')
+    gdf2 = gpd.read_file('testdata/rail_way.shp', encoding='big5')
+    gdf2 = gdf2.to_crs(gdf1.crs)
+    gdf3 = gpd.read_file('testdata/rail_station.shp', encoding='utf-8')
+    gdf3 = gdf3.to_crs(gdf1.crs)
+    m = vmapper.Map(interactive=True)
+    m.add_geodataframe(gdf1, layername='township', draw_setting=dict(labelby='countyname', idby='countyid'), hovercolor=(255,10,10),hoveropacity=0.9,hoverstroke="#FF0",hoverswidth=1, color=(20,20,250), opacity=0.6, strokecolor="#0F0", strokewidth=30, showlabel=True)
+    m.add_geodataframe(gdf2, layername='railway', draw_setting=dict(labelby='railcode', idby='railid'),strokecolor="#FF7",  hoverstroke="#0F0",hoverswidth=500, strokewidth=300, showlabel=True)
+    m.add_geodataframe(gdf3, layername='railstation', draw_setting=dict(labelby='landmarkna', idby='landmarkid'), radius=200, hovercolor=(255,255,10),hoveropacity=0.9,hoverstroke="#FFF",hoverswidth=50, color=(255,20,250), opacity=0.6, strokecolor="#000", strokewidth=10, showlabel=True)
+    m.export_to_file('testdata/output/testing1b.svg')
 
 if __name__ == '__main__':
-    test()
+    test_gpd()
+    #test_pd()

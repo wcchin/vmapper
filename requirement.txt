@@ -1,5 +1,23 @@
-pyshp
-numpy
-pandas
-brewer2mpl
-pyproj
+appdirs==1.4.3  # MIT
+click==6.7  # License :: OSI Approved :: BSD License
+click-plugins==1.0.3  # New BSD
+cligj==0.4.0  # BSD
+cycler==0.10.0  # BSD
+descartes==1.1.0  # BSD
+Fiona==1.7.5  # BSD
+functools32==3.2.3.post2
+geopandas==0.2.1  # BSD
+Jinja2==2.9.6  # BSD
+MarkupSafe==1.0  # BSD
+matplotlib==2.0.0  # BSD
+munch==2.1.1  # MIT
+numpy==1.12.1  # BSD
+packaging==16.8  # BSD or Apache License, Version 2.0
+pandas==0.19.2  # BSD
+pyparsing==2.2.0  # MIT License
+pyproj==1.9.5.1  # OSI Approved
+python-dateutil==2.6.0  # Simplified BSD
+pytz==2017.2  # MIT
+Shapely==1.5.17.post1  # BSD
+six==1.10.0  # MIT
+subprocess32==3.2.7  # PSF license

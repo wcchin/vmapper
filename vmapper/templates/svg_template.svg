@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"  baseProfile="tiny"
+width="100%" height="100%">
+{% if title is not none %}
+  <title>{{ title }}</title>
+{% endif %}
+{% if description is not none %}
+  <desc> {{ description }} </desc>
+{% endif %}
+{% if creator is not none %}
+  <desc property="dc:creator">{{ creator }}</desc>
+{% endif %}
+<svg width="{{ canvas_width }}"
+    height="{{ canvas_height }}"
+    viewBox="{{xmin}} {{ymin}} {{boxwidth}} {{boxheight}}"
+    preserveAspectRatio="xMidYMid meet"
+    viewport-fill="{{ bgcolor }}">
+<style type="text/css" media="screen">
+svg {background: {{ bgcolor }};}
+<![CDATA[
+{% if hover_hightlight_items is not none: %}
+{{ hover_highlight_items }} :hover {
+    opacity: 0.8;
+    stroke-width:500pt;
+}
+{% endif %}
+{{ CDATA }}
+]]>
+</style>
+{% if interactive: %}
+<script xlink:href="SVGPan.js" />
+<g id="viewport"> <!-- for SVGPan -->
+{% endif %}
+<g transform="translate(0 {{ 2*ymin+boxheight }}) scale(1,-1)">
+{{ drawing }}
+</g>
+{% if interactive: %}
+</g>
+{% endif %}
+</svg>
+{% if map_elements is not none: %}
+<g id='map_elements'>
+{% if 'textboxes' in map_elements %}
+ {{ map_elements['textboxes'] }}
+ {% endif %}
+ {% if 'mapscales' in map_elements %}
+ {{ map_elements['mapscales'] }}
+ {% endif %}
+ {% if 'legends' in map_elements %}
+ {{ map_elements['legends'] }}
+ {% endif %}
+ {% if 'gridlines' in map_elements %}
+ {{ map_elements['gridlines'] }}
+ {% endif %}
+</g>
+{% endif %}
+</svg>

@@ -1,0 +1,8 @@
+<g class="{{ layername }}">
+    {% if showlabel: %}
+    <title>{{ text[:7] }}</title>
+    {% endif %}
+    <text id="{{ idd }}" x="{{ x }}" y="{{ y }}" text-anchor="{{ text_anchor }}" class="area" {{ style_str }} > {{ anim_str }}
+        {{ text }}
+    </text>
+</g>
