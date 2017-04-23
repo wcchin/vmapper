@@ -26,5 +26,35 @@ pip install -e .
 
 ```
 
+or 
+
+```sh
+pip install -e git+https://github.com/wcchin/vmapper.git#egg=vmapper
+
+```
+
 ### usage
-check test.py
+
+```python
+## import geopandas
+import geopandas as gpd
+
+## reading files (labels in chinese)
+gdf1 = gpd.read_file('testdata/county.shp') ## a polygon file, encoding is utf-8, projection Twd1997/TM2
+gdf2 = gpd.read_file('testdata/rail_way.shp', encoding='big5') ## a polyline files, the encoding is big5, projection in wgs84
+gdf2 = gdf2.to_crs(gdf1.crs) ## reproject to the same as gdf1
+gdf3 = gpd.read_file('testdata/rail_station.shp', encoding='utf-8') ## a point file, encoding utf-8, projection wgs84
+gdf3 = gdf3.to_crs(gdf1.crs) ## reproject to the same as gdf1
+
+## start making map, starting by creating a blank map
+m = vmapper.Map(interactive=True) ## interactive will use the SVGPan.js, which will be copy automatically
+
+## add the gdf into the map, check the draw_setting
+m.add_geodataframe(gdf1, layername='township', draw_setting=dict(labelby='countyname', idby='countyid'), hovercolor=(255,10,10),hoveropacity=0.9,hoverstroke="#FF0",hoverswidth=1, color=(20,20,250), opacity=0.6, strokecolor="#0F0", strokewidth=30, showlabel=True)
+m.add_geodataframe(gdf2, layername='railway', draw_setting=dict(labelby='railcode', idby='railid'),strokecolor="#FF7",  hoverstroke="#0F0",hoverswidth=500, strokewidth=300, showlabel=True)
+m.add_geodataframe(gdf3, layername='railstation', draw_setting=dict(labelby='landmarkna', idby='landmarkid'), radius=200, hovercolor=(255,255,10),hoveropacity=0.9,hoverstroke="#FFF",hoverswidth=50, color=(255,20,250), opacity=0.6, strokecolor="#000", strokewidth=10, showlabel=True)
+
+## finally, export the map to a file
+m.export_to_file('testdata/output/testing1b.svg')
+
+```
