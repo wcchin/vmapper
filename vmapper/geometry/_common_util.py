@@ -15,9 +15,13 @@ def render(TEMPLATE_FILE, templateVars):
     return outputText
 
 def getcolorhex(rgb):
+<<<<<<< HEAD
     if rgb=='transparent':
         return rgb
     elif rgb[0]!="#":
+=======
+    if rgb[0]!="#":
+>>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
         return "#%x%x%x" % (rgb[0]/16,rgb[1]/16,rgb[2]/16)
     else:
         return rgb

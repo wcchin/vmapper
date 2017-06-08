@@ -26,7 +26,11 @@ class Map:
 
         vmapperpath = os.path.dirname(__file__)
         src = vmapperpath+'/templates/SVGPan.js'
+<<<<<<< HEAD
         dst = os.path.join(os.path.dirname(outputfn),'SVGPan.js')
+=======
+        dst = os.path.dirname(outputfn)+'/SVGPan.js'
+>>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
         if (not(os.path.exists(dst)) and self.interactive):
             copyfile(src, dst)
             print 'copied SVGPan.js file to :', dst
@@ -71,7 +75,11 @@ class Map:
         geoms = agdf.geometry
         if self.bounds is None:
             self.tot_bounds.append(geoms.total_bounds)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
         gtype = agdf.geom_type.tolist()[0]
 
         # overall styles in CDATA
