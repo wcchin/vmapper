@@ -58,3 +58,9 @@ m.add_geodataframe(gdf3, layername='railstation', draw_setting=dict(labelby='lan
 m.export_to_file('testdata/output/testing1b.svg')
 
 ```
+
+### sample output
+The following map is generated using vmapper, the color of each polygon feature is assigned using <a href="https://wcchin.github.io/colouringmap" target="blank">colouringmap</a>.
+
+![density choropleth map](testdata/output/testing_taipei_crime_map2.svg?raw=true "density of some crime")  
+link: [density choropleth map](testdata/output/testing_taipei_crime_map2.svg?raw=true)
