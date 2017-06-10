@@ -11,6 +11,7 @@ class Scene():
     def __init__(self, param_dict, interactive=False):
         self.params = param_dict
         self.layers = []
+        self.map_elements = []
         self.style_items = []
         self.string_codes = []
         self.textboxs = ""
@@ -26,6 +27,9 @@ class Scene():
 
     def add_Layer(self, layer):
         self.layers.append(layer)
+
+    def add_Map_Element(self, layer):
+        self.map_elements.append(layer)
 
     def add_strcode(self, item):
         self.string_codes.append(item)
@@ -81,7 +85,11 @@ class Scene():
         style_items = " ".join(self.style_items)
 
         # not implement yet, put it here (TODO)
-        map_elements = None
+        elements = []
+        for layer in self.map_elements:
+            layer_str = layer.get_layer_str()
+            elements.append(layer_str)
+        map_elements = " ".join(elements)
 
         return self.render_svg(drawing=draws, CDATA=style_items, map_elements=map_elements)
 
@@ -93,7 +101,7 @@ class Scene():
         templateVars.update(temp)
         if templateVars['hover_hightlight_items'] is not None:
             templateVars['hover_hightlight_items'] = ', '.join(templateVars['hover_hightlight_items'])
-        templateVars.update(dict(drawing=drawing, CDATA=CDATA, interactive=self.interactive))
+        templateVars.update(dict(drawing=drawing, CDATA=CDATA, map_elements=map_elements,  interactive=self.interactive))
 
         vmapperpath = os.path.dirname(__file__)
         templateLoader = jinja2.FileSystemLoader( searchpath=vmapperpath+"/templates/" )

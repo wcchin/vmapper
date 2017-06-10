@@ -18,6 +18,7 @@ class Rectangle:
             self.label = index
         self.idd = index
         self.tem_dict = dict(layername=layer,showlabel=showlabel,label=self.label,idd=index)
+        self.animate_times = animate_times
         self.tem = 'Rectangle.svg'
 
     def feature_string(self):

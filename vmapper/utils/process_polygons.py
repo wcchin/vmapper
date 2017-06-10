@@ -4,10 +4,6 @@ from shapely.geometry import LinearRing
 from Layer import Layer
 from vmapper import geometry as geom
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
 def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None):
     alayer = Layer(layername=layername)
     gtypes = geoms.geom_type.tolist()

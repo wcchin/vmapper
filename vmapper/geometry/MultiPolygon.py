@@ -12,11 +12,7 @@ class MultiPolygon:
         self.color = color
         self.strokecolor = strokecolor
         self.animate_times = animate_times
-<<<<<<< HEAD
         if not(label is None):
-=======
-        if len(label)>0:
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
             self.label = label
         else:
             self.label = index

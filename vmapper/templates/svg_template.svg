@@ -40,18 +40,7 @@ svg {background: {{ bgcolor }};}
 </svg>
 {% if map_elements is not none: %}
 <g id='map_elements'>
-{% if 'textboxes' in map_elements %}
- {{ map_elements['textboxes'] }}
- {% endif %}
- {% if 'mapscales' in map_elements %}
- {{ map_elements['mapscales'] }}
- {% endif %}
- {% if 'legends' in map_elements %}
- {{ map_elements['legends'] }}
- {% endif %}
- {% if 'gridlines' in map_elements %}
- {{ map_elements['gridlines'] }}
- {% endif %}
+{{ map_elements }}
 </g>
 {% endif %}
 </svg>

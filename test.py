@@ -18,6 +18,7 @@ def test_gpd():
     m.add_geodataframe(gdf1, layername='township', draw_setting=dict(labelby='countyname', idby='countyid'), hovercolor=(255,10,10),hoveropacity=0.9,hoverstroke="#FF0",hoverswidth=1, color=(20,20,250), opacity=0.6, strokecolor="#0F0", strokewidth=30, showlabel=True)
     m.add_geodataframe(gdf2, layername='railway', draw_setting=dict(labelby='railcode', idby='railid'),strokecolor="#FF7",  hoverstroke="#0F0",hoverswidth=500, strokewidth=300, showlabel=True)
     m.add_geodataframe(gdf3, layername='railstation', draw_setting=dict(labelby='landmarkna', idby='landmarkid'), radius=200, hovercolor=(255,255,10),hoveropacity=0.9,hoverstroke="#FFF",hoverswidth=50, color=(255,20,250), opacity=0.6, strokecolor="#000", strokewidth=10, showlabel=True)
+    m.add_title('testing title')
     m.export_to_file('testdata/output/testing1b.svg')
 
 if __name__ == '__main__':

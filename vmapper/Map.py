@@ -5,6 +5,7 @@ from shutil import copyfile
 
 from Scene import Scene
 import utils
+import map_element as ele
 
 
 class Map:
@@ -14,6 +15,7 @@ class Map:
         self.params = params
         self.interactive = interactive
         self.layers = []
+        self.map_eles = []
         self.styles = []
         self.bounds = self.get_bounds(params) ## (minx, miny, maxx, maxy)
         self.tot_bounds = []
@@ -26,11 +28,7 @@ class Map:
 
         vmapperpath = os.path.dirname(__file__)
         src = vmapperpath+'/templates/SVGPan.js'
-<<<<<<< HEAD
         dst = os.path.join(os.path.dirname(outputfn),'SVGPan.js')
-=======
-        dst = os.path.dirname(outputfn)+'/SVGPan.js'
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
         if (not(os.path.exists(dst)) and self.interactive):
             copyfile(src, dst)
             print 'copied SVGPan.js file to :', dst
@@ -39,6 +37,8 @@ class Map:
         self.scene = Scene(param_dict=self.params, interactive=self.interactive)
         for alayer in self.layers:
             self.scene.add_Layer(alayer)
+        for alayer in self.map_eles:
+            self.scene.add_Map_Element(alayer)
         for aclasskey, asty in self.styles:
             self.scene.update_style(aclasskey , **asty)
         if self.bounds is None:
@@ -68,6 +68,19 @@ class Map:
             bounds = None
         return bounds
 
+    def add_title(self, text, loc='top_left', xyloc=None, text_anchor=None, size=24, fontfamily='Arial', layername='title', color=None, opacity=None, strokecolor=None, strokewidth=None, framebox=False):
+        alayer = ele.TextBox(text, loc=loc, xyloc=xyloc, text_anchor=text_anchor, size=size, fontfamily=fontfamily, layername=layername, color=color, opacity=opacity, strokecolor=strokecolor, strokewidth=strokewidth, framebox=framebox)
+        self.map_eles.append(alayer)
+
+    def add_footer(self, text, loc='bottom_right', xyloc=None, text_anchor=None, size=12, fontfamily='Arial', layername='title', color=None, opacity=None, strokecolor=None, strokewidth=None, framebox=False):
+        alayer = ele.TextBox(text, loc=loc, xyloc=xyloc, text_anchor=text_anchor, size=size, fontfamily=fontfamily, layername=layername, color=color, opacity=opacity, strokecolor=strokecolor, strokewidth=strokewidth, framebox=framebox)
+        self.map_eles.append(alayer)
+
+    def add_color_legend(self, color_tuple, loc='right', xyloc=None, text_anchor=None, size=12, fontfamily='Arial', layername='Legend', color=None, opacity=None, strokecolor=None, strokewidth=None, framebox=False, legend_title=True):
+
+        alayer = ele.ColorLegend(color_tuple, loc=loc, xyloc=xyloc, text_anchor=text_anchor, size=size, fontfamily=fontfamily, layername=layername, color=color, opacity=opacity, strokecolor=strokecolor, strokewidth=strokewidth, framebox=framebox, legend_title=legend_title)
+        self.map_eles.append(alayer)
+
     def add_geodataframe(self, agdf, layername, draw_setting={}, hovercolor=None,hoveropacity=None,hoverstroke=None,hoverswidth=None, color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None, radius=2.):
         # layername is classkey, classkey is layername
         feature_sty = utils.get_feature_sty(agdf, draw_setting)
@@ -75,11 +88,7 @@ class Map:
         geoms = agdf.geometry
         if self.bounds is None:
             self.tot_bounds.append(geoms.total_bounds)
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
         gtype = agdf.geom_type.tolist()[0]
 
         # overall styles in CDATA

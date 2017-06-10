@@ -3,11 +3,7 @@ from setuptools import setup
 setup(
     name="vmapper",
 
-<<<<<<< HEAD
     version="0.0.2",
-=======
-    version="0.0.1",
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
     
     author="Benny Chin",
     author_email="wcchin.88@gmal.com",
@@ -36,11 +32,7 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
 
-<<<<<<< HEAD
     keywords='map, geography, catography, svg, ',
-=======
-    keywords='map, geography, svg, ',
->>>>>>> a426d7da838d8e4ab93c4bc5ab245c7e5feb792a
 
     install_requires=[
         "jinja2",
