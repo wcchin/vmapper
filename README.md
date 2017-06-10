@@ -63,4 +63,5 @@ m.export_to_file('testdata/output/testing1b.svg')
 The following map is generated using vmapper, the color of each polygon feature is assigned using <a href="https://wcchin.github.io/colouringmap" target="blank">colouringmap</a>.
 
 ![density choropleth map](testdata/output/testing_taipei_crime_map2.svg?raw=true "density of some crime")  
+<object id="svg1" data="testdata/output/testing_taipei_crime_map2.svg?raw=true" type="image/svg+xml" style="width: 650px; height: 480px"></object>  
 link: [density choropleth map](testdata/output/testing_taipei_crime_map2.svg?raw=true)
