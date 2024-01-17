@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class MultiPolyline:
     def __init__(self, vertexes, index=0, layer='', label='', strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):
@@ -34,5 +34,5 @@ def get_arcstring(vertexlist):
             string = string + "%.6f"%(x)+","+"%.6f"%(y) + "  "
         return string
     else:
-        print 'vertexlist is too short (<2), returning None'
+        print( 'vertexlist is too short (<2), returning None')
         return None

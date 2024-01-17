@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from common_util import getcolorhex
-import fadeIO
+from .common_util import getcolorhex
+from . import fadeIO
 
 # not rewrite yet
 class Morphing_Shapes():

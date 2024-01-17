@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class Rectangle:
     def __init__(self, origin, width, height,index=0, layer='', label='', color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):

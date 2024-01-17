@@ -3,7 +3,7 @@
 import os
 import jinja2
 
-import _fadeIO
+from . import _fadeIO
 
 
 def render(TEMPLATE_FILE, templateVars):
@@ -18,7 +18,7 @@ def getcolorhex(rgb):
     if rgb=='transparent':
         return rgb
     elif rgb[0]!="#":
-        return "#%x%x%x" % (rgb[0]/16,rgb[1]/16,rgb[2]/16)
+        return "#%x%x%x".format(rgb[0]/16,rgb[1]/16,rgb[2]/16)
     else:
         return rgb
 
@@ -42,7 +42,7 @@ def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsiz
     if not(fontsize is None):
         fs = "font-size:%spx;" % (fontsize)
     if not(fontfamily is None):
-        fm = "font-family:%spx;" % (fontfamily)
+        fm = "font-family:%s;" % (fontfamily)
 
     if not(len(fs+fm+fc+fo+sc+sw)==0):
         stystr = ' '.join([fs,fm,fc,fo,sc,sw])

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from Layer import Layer
-from vmapper import geometry as geom
+from .Layer import Layer
+from .. import geometry as geom
 
 def XY_to_points(adf, layername, draw_setting, radius, feature_sty, showlabel=False, animate_times=None):
 

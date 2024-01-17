@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class MultiPolygon:
     def __init__(self, exterior, index=0, layer='', label='', interiors=[], color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):
@@ -44,5 +44,5 @@ def get_pathstring(vertexlist):
         string = string[:-2]+'Z '
         return string
     else:
-        print 'vertexlist is too short (<2), returning None'
+        print('vertexlist is too short (<2), returning None')
         return None

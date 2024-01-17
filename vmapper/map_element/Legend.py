@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from vmapper import utils
+from .. import utils
 #from vmapper import geometry as geom
-from vmapper import geometry as geom
-import common_function
+from .. import geometry as geom
+from . import common_function
 
 def ColorLegend(color_tuple, loc, xyloc, text_anchor, size=12, fontfamily='Arial', layername='Legend', color=None, opacity=None, strokecolor=None, strokewidth=None, framebox=False, legend_title=True):
     alayer = utils.Layer(layername=layername)

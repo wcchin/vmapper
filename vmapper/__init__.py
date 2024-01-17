@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from Map import Map
-from Scene import Scene
+from .Map import Map
+from .Scene import Scene
 
-import geometry as geom
+from . import geometry as geom

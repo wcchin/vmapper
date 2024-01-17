@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class Text:
     def __init__(self, anchor_position=[0,0], text="Text", size=24, fontfamily='Arial', text_anchor="start", layer='', color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):

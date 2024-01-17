@@ -5,7 +5,7 @@
 import os
 import jinja2
 
-import geometry
+from . import geometry
 
 class Scene():
     def __init__(self, param_dict, interactive=False):
@@ -97,7 +97,7 @@ class Scene():
         default_param_dict = dict(title=None, description=None, creator=None, canvas_width="100%", canvas_height="100%", xmin=0, ymin=0, boxwidth=10, boxheight=10, hover_hightlight_items=None, bgcolor="#B3C0EF", textcolor="#000000")
 
         templateVars = self.params.copy()
-        temp = { k:v for k,v in default_param_dict.iteritems() if k not in templateVars }
+        temp = { k:v for k,v in default_param_dict.items() if k not in templateVars }
         templateVars.update(temp)
         if templateVars['hover_hightlight_items'] is not None:
             templateVars['hover_hightlight_items'] = ', '.join(templateVars['hover_hightlight_items'])

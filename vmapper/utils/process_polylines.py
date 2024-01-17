@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from Layer import Layer
-from vmapper import geometry as geom
+from .Layer import Layer
+from .. import geometry as geom
 
 def process_polylines(layername, geoms, indexes, labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None):
     alayer = Layer(layername=layername)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class Circle:
     def __init__(self, center, radius, index=0, layer='', label='', color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):

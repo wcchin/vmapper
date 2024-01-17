@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from _common_util import getsty, getanim, render
+from ._common_util import getsty, getanim, render
 
 class Line:
     def __init__(self, start, end, index=0, layer='', label='', strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):

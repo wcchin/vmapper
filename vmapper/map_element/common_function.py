@@ -22,7 +22,7 @@ def get_loc(loc):
         xyloc = ['50%','95%']
         ta = 'middle'
     else:
-        print 'location problem'
+        print('location problem')
     return (xyloc, ta)
 
 def get_loc2(loc):
@@ -38,5 +38,5 @@ def get_loc2(loc):
         xyloc = ['30%','50%']
         ta = 'start'
     else:
-        print 'location problem'
+        print('location problem')
     return (xyloc, ta)

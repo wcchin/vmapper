@@ -3,9 +3,9 @@
 import os
 from shutil import copyfile
 
-from Scene import Scene
-import utils
-import map_element as ele
+from .Scene import Scene
+from . import utils
+from . import map_element as ele
 
 
 class Map:
@@ -22,16 +22,16 @@ class Map:
 
     def export_to_file(self, outputfn):
         outputText = self.make_scene()
-        f = open(outputfn, 'w')
+        f = open(outputfn, 'wb')
         f.write(outputText.encode("utf-8"))
-        print 'exported to :', outputfn
+        print( 'exported to :', outputfn)
 
         vmapperpath = os.path.dirname(__file__)
         src = vmapperpath+'/templates/SVGPan.js'
         dst = os.path.join(os.path.dirname(outputfn),'SVGPan.js')
         if (not(os.path.exists(dst)) and self.interactive):
             copyfile(src, dst)
-            print 'copied SVGPan.js file to :', dst
+            print( 'copied SVGPan.js file to :', dst)
 
     def make_scene(self):
         self.scene = Scene(param_dict=self.params, interactive=self.interactive)
@@ -105,7 +105,7 @@ class Map:
         elif gtype=='Polygon' or gtype=='MultiPolygon':
             alayer = utils.process_polygons(layername=layername, geoms=geoms, showlabel=showlabel, animate_times=animate_times, **feature_sty)
         else:
-            #print 'we do not support this geom_type : '+gtype
+            #print( 'we do not support this geom_type : '+gtype)
             raise ValueError('we do not support this geom_type: ', gtype)
 
         self.styles.append( (layername, asty) )

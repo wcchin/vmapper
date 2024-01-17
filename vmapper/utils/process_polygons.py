@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from shapely.geometry import LinearRing
-from Layer import Layer
-from vmapper import geometry as geom
+from .Layer import Layer
+from .. import geometry as geom
 
 def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None):
     alayer = Layer(layername=layername)
@@ -30,7 +30,8 @@ def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacit
             gexs = [gex]
             gins = [gin]
         elif gt=='MultiPolygon':
-            mg = list(g)
+            #print(g[0])
+            mg = list(g.geoms)
             for ag in mg:
                 gex,gin = process_a_polygon(ag)
                 gexs.append(gex)

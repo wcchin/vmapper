@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from vmapper import utils
-#from vmapper import geometry as geom
-from vmapper import geometry as geom
-import common_function
+from .. import utils
+from .. import geometry as geom
+from . import common_function
 
 def TextBox(text, loc, xyloc, text_anchor, size=24, fontfamily='Arial', layername='text', color=None, opacity=None, strokecolor=None, strokewidth=None, framebox=False):
     alayer = utils.Layer(layername=layername)
