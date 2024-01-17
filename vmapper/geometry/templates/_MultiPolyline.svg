@@ -1,0 +1,3 @@
+<g class="{{ layername }}">
+    {% if showlabel: %}    <title>{{ label }}</title>    {% endif %}    <polyline id="{{ idd }}" points="{{ geom_str }}" class="line" {{ style_str }} > {{ anim_str }} </polyline>
+</g>

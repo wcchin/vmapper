@@ -1,6 +1,3 @@
 <g class="{{ layername }}">
-    {% if showlabel: %}
-    <title>{{ label }}</title>
-    {% endif %}
-    <path id="{{ idd }}" d="{{ geom_str }}" class="area" {{ style_str }} > {{ anim_str }} </path>
+    {% if showlabel: %}    <title>{{ label }}</title>    {% endif %}    <path id="{{ idd }}" d="{{ geom_str }}" class="area" {{ style_str }} > {{ anim_str }} </path>
 </g>

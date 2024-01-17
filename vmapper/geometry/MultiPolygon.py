@@ -37,10 +37,9 @@ class MultiPolygon:
 def get_pathstring(vertexlist):
     if len(vertexlist)>1:
         string = 'M '
-        for a in vertexlist:
-            x = a[0]
-            y = a[1]
-            string = string+"%.6f"%(x)+","+"%.6f"%(y)+" L "
+        for x, y in vertexlist:
+            string = string + "{:.6f},{:.6f} L ".format(x, y)
+            #"%.6f"%(x)+","+"%.6f"%(y)+" L "
         string = string[:-2]+'Z '
         return string
     else:

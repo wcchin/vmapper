@@ -45,9 +45,11 @@ def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsiz
     if not(fontfamily is None):
         fm = "font-family:%s;" % (fontfamily)
 
-    if not(len(fs+fm+fc+fo+sc+sw)==0):
-        stystr = ' '.join([fs,fm,fc,fo,sc,sw])
-        sty = 'style="%s" ' % stystr
+    tmp = [a for a in [fs,fm,fc,fo,sc,sw] if len(a)>0]
+    #if not(len(fs+fm+fc+fo+sc+sw)==0):
+    if (len(tmp)>0):
+        stystr = ' '.join(tmp)
+        sty = 'style="{}" '.format(stystr)
     else:
         sty = ' '
     return sty
