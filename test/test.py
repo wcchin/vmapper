@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import vmapper
+import os
+os.environ['USE_PYGEOS'] = '0'
+import geopandas
 
 def test_pd():
     import pandas as pd

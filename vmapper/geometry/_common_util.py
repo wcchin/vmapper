@@ -18,7 +18,8 @@ def getcolorhex(rgb):
     if rgb=='transparent':
         return rgb
     elif rgb[0]!="#":
-        return "#%x%x%x".format(rgb[0]/16,rgb[1]/16,rgb[2]/16)
+        clrhex = "#{:02x}{:02x}{:02x}".format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
+        return clrhex
     else:
         return rgb
 

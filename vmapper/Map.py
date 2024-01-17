@@ -24,7 +24,7 @@ class Map:
         outputText = self.make_scene()
         f = open(outputfn, 'wb')
         f.write(outputText.encode("utf-8"))
-        print( 'exported to :', outputfn)
+        print('exported to :', outputfn)
 
         vmapperpath = os.path.dirname(__file__)
         src = vmapperpath+'/templates/SVGPan.js'
