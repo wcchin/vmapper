@@ -25,6 +25,7 @@ class Map:
         f = open(outputfn, 'wb')
         f.write(outputText.encode("utf-8"))
         print('exported to :', outputfn)
+        f.close()
 
         vmapperpath = os.path.dirname(__file__)
         src = vmapperpath+'/templates/SVGPan.js'
@@ -81,7 +82,10 @@ class Map:
         alayer = ele.ColorLegend(color_tuple, loc=loc, xyloc=xyloc, text_anchor=text_anchor, size=size, fontfamily=fontfamily, layername=layername, color=color, opacity=opacity, strokecolor=strokecolor, strokewidth=strokewidth, framebox=framebox, legend_title=legend_title)
         self.map_eles.append(alayer)
 
-    def add_geodataframe(self, agdf, layername, draw_setting={}, hovercolor=None,hoveropacity=None,hoverstroke=None,hoverswidth=None, color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None, radius=2.):
+    def add_geodataframe(self, agdf, layername, draw_setting={}, 
+        hovercolor=None,hoveropacity=None,hoverstroke=None,hoverswidth=None, 
+        color=None, opacity=None, strokecolor=None, strokewidth=None, 
+        showlabel=False, animate_times=None, radius=2., visibility='visible'):
         # layername is classkey, classkey is layername
         feature_sty = utils.get_feature_sty(agdf, draw_setting)
 
@@ -95,15 +99,15 @@ class Map:
         asty = dict(hovercolor=hovercolor,hoveropacity=hoveropacity,hoverstroke=hoverstroke,hoverswidth=hoverswidth, color=color, opacity=opacity, strokecolor=strokecolor, strokewidth=strokewidth)
 
         if gtype=='Point':
-            alayer = utils.process_points(layername=layername, geoms=geoms, radius=radius, showlabel=showlabel, animate_times=animate_times, **feature_sty)
+            alayer = utils.process_points(layername=layername, geoms=geoms, radius=radius, showlabel=showlabel, animate_times=animate_times, visibility=visibility, **feature_sty)
         elif gtype=='LineString':
-            alayer = utils.process_polylines(layername=layername, geoms=geoms, showlabel=showlabel, animate_times=animate_times, **feature_sty)
+            alayer = utils.process_polylines(layername=layername, geoms=geoms, showlabel=showlabel, animate_times=animate_times, visibility=visibility, **feature_sty)
             asty['color'] = None
             asty['opacity'] = None
             asty['hovercolor'] = None
             asty['hoveropacity'] = None
         elif gtype=='Polygon' or gtype=='MultiPolygon':
-            alayer = utils.process_polygons(layername=layername, geoms=geoms, showlabel=showlabel, animate_times=animate_times, **feature_sty)
+            alayer = utils.process_polygons(layername=layername, geoms=geoms, showlabel=showlabel, animate_times=animate_times, visibility=visibility, **feature_sty)
         else:
             #print( 'we do not support this geom_type : '+gtype)
             raise ValueError('we do not support this geom_type: ', gtype)

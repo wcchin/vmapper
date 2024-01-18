@@ -3,7 +3,7 @@
 from .Layer import Layer
 from .. import geometry as geom
 
-def process_points(layername, geoms, indexes, radius=2., labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None):
+def process_points(layername, geoms, indexes, radius=2., labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None, visibility='visible'):
     alayer = Layer(layername=layername)
     geoms2 = geoms.tolist()
     for i in range(len(geoms2)):
@@ -25,5 +25,5 @@ def process_points(layername, geoms, indexes, radius=2., labels=None, colors=Non
         else:
             rr = radius
         center = list(g.coords)[0]
-        alayer.addtoLayer(geom.Circle(center=center, radius=rr, layer=layername, index=idd, label=lab, color=fc, opacity=fo, strokecolor=ec, strokewidth=ew, showlabel=showlabel, animate_times=animate_times))
+        alayer.addtoLayer(geom.Circle(center=center, radius=rr, layer=layername, index=idd, label=lab, color=fc, opacity=fo, strokecolor=ec, strokewidth=ew, showlabel=showlabel, animate_times=animate_times, visibility=visibility))
     return alayer

@@ -4,7 +4,7 @@ from shapely.geometry import LinearRing
 from .Layer import Layer
 from .. import geometry as geom
 
-def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None):
+def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacitys=None, edgecolors=None, edgewidths=None, radiuses=None, showlabel=False, animate_times=None, visibility='visible'):
     alayer = Layer(layername=layername)
     gtypes = geoms.geom_type.tolist()
     geoms2 = geoms.tolist()
@@ -36,7 +36,7 @@ def process_polygons(layername, geoms, indexes, labels=None, colors=None, opacit
                 gex,gin = process_a_polygon(ag)
                 gexs.append(gex)
                 gins.append(gin)
-        alayer.addtoLayer(geom.MultiPolygon(exterior=gexs, interiors=gins, layer=layername, index=idd, label=lab, color=fc, opacity=fo, strokecolor=ec, strokewidth=ew, showlabel=showlabel, animate_times=animate_times))
+        alayer.addtoLayer(geom.MultiPolygon(exterior=gexs, interiors=gins, layer=layername, index=idd, label=lab, color=fc, opacity=fo, strokecolor=ec, strokewidth=ew, showlabel=showlabel, animate_times=animate_times, visibility=visibility))
     return alayer
 
 def process_a_polygon(g):

@@ -3,7 +3,7 @@
 from ._common_util import getsty, getanim, render
 
 class MultiPolygon:
-    def __init__(self, exterior, index=0, layer='', label='', interiors=[], color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):
+    def __init__(self, exterior, index=0, layer='', label='', interiors=[], color=None, opacity=None, strokecolor=None, strokewidth=None, showlabel=False, animate_times=None, visibility='visible'):
         self.exterior = exterior
         self.interiors = interiors
 
@@ -11,6 +11,7 @@ class MultiPolygon:
         self.strokewidth = strokewidth
         self.color = color
         self.strokecolor = strokecolor
+        self.visibility = visibility
         self.animate_times = animate_times
         if not(label is None):
             self.label = label
@@ -28,7 +29,9 @@ class MultiPolygon:
             for inring in inrings:
                 sub_in = get_pathstring(inring)
                 mainstr = mainstr + sub_in
-        sty = getsty(color=self.color, opacity=self.opacity, strokecolor=self.strokecolor, strokewidth=self.strokewidth)
+        sty = getsty(color=self.color, opacity=self.opacity, 
+            strokecolor=self.strokecolor, strokewidth=self.strokewidth, 
+            visibility=self.visibility)
         anim = getanim(self.idd, self.animate_times)
         self.tem_dict.update(dict(geom_str=mainstr, style_str=sty, anim_str=anim))
         string_done = render(self.tem, self.tem_dict)

@@ -3,11 +3,12 @@
 from ._common_util import getsty, getanim, render
 
 class MultiPolyline:
-    def __init__(self, vertexes, index=0, layer='', label='', strokecolor=None, strokewidth=None, showlabel=False, animate_times=None):
+    def __init__(self, vertexes, index=0, layer='', label='', strokecolor=None, strokewidth=None, showlabel=False, animate_times=None, visibility='visible'):
         self.vertexes = vertexes
 
         self.strokewidth = strokewidth
         self.strokecolor = strokecolor
+        self.visibility = visibility
         self.animate_times = animate_times
         if len(label)>0:
             self.label = label
@@ -19,7 +20,9 @@ class MultiPolyline:
 
     def feature_string(self):
         mainstr = get_pathstring(self.vertexes)  # get_arcstring(self.vertexes)
-        sty = getsty(strokecolor=self.strokecolor, strokewidth=self.strokewidth, color='none')
+        sty = getsty(strokecolor=self.strokecolor, strokewidth=self.strokewidth, 
+            color='none', 
+            visibility=self.visibility)
         anim = getanim(self.idd, self.animate_times)
         self.tem_dict.update(dict(geom_str=mainstr, style_str=sty, anim_str=anim))
         string_done = render(self.tem, self.tem_dict)

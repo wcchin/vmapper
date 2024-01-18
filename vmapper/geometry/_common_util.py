@@ -23,7 +23,7 @@ def getcolorhex(rgb):
     else:
         return rgb
 
-def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsize=None, fontfamily=None):
+def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsize=None, fontfamily=None, visibility='visible'):
     if color=='none':
         color = color
     elif color!=None:
@@ -31,7 +31,7 @@ def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsiz
     if strokecolor!=None:
         strokecolor = getcolorhex(strokecolor)
 
-    fc,fo,sc,sw,fs,fm = '','','','','',''
+    fc,fo,sc,sw,fs,fm,vs = '','','','','','',''
     if not(color is None):
         fc = "fill:%s;" % (color)
     if not(opacity is None):
@@ -44,8 +44,10 @@ def getsty(color=None, opacity=None, strokecolor=None, strokewidth=None, fontsiz
         fs = "font-size:%spx;" % (fontsize)
     if not(fontfamily is None):
         fm = "font-family:%s;" % (fontfamily)
+    if visibility=='hidden':
+        vs = "visibility:hidden;"
 
-    tmp = [a for a in [fs,fm,fc,fo,sc,sw] if len(a)>0]
+    tmp = [a for a in [fs,fm,fc,fo,sc,sw,vs] if len(a)>0]
     #if not(len(fs+fm+fc+fo+sc+sw)==0):
     if (len(tmp)>0):
         stystr = ' '.join(tmp)
